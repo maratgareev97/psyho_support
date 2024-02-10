@@ -1,0 +1,8 @@
+version: '3'
+services:
+  tomcat:
+    # Используем наш созданный Dockerfile
+    build: .
+    # Открываем порт 8080 для доступа к Tomcat
+    ports:
+      - "8080:8080"
