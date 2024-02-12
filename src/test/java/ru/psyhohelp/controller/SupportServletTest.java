@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import ru.psyhohelp.model.SupportPhrase;
-import ru.psyhohelp.service.SupportPhraseService;
+import ru.psyhohelp.service.SupportPhraseServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 class SupportServletTest {
 
     @Mock
-    private SupportPhraseService supportPhraseService;
+    private SupportPhraseServiceImpl supportPhraseServiceImpl;
 
     @Mock
     private HttpServletRequest request;
@@ -34,7 +34,7 @@ class SupportServletTest {
     private HttpServletResponse response;
 
     @InjectMocks
-    private SupportServlet supportServlet;
+    private SupportPhraseControllerImpl supportServlet;
 
     @BeforeEach
     void setUp() {
@@ -44,50 +44,47 @@ class SupportServletTest {
     @Test
     void testDoPost() throws Exception {
 
-        String requestBody = "Новая фраза";
+        String requestBody = "{\"phrase\": \"Новая фраза\"}";
         BufferedReader reader = new BufferedReader(new StringReader(requestBody));
         when(request.getReader()).thenReturn(reader);
 
-        SupportPhrase mockSupportPhrase = new SupportPhrase(1, "Новая фраза");
-        when(supportPhraseService.addSupportPhrase(requestBody)).thenReturn(mockSupportPhrase);
 
+        SupportPhrase mockSupportPhrase = new SupportPhrase(1, "Новая фраза");
+        when(supportPhraseServiceImpl.addSupportPhrase("Новая фраза")).thenReturn(mockSupportPhrase);
 
         StringWriter stringWriter = new StringWriter();
-        when(response.getWriter()).thenReturn(new PrintWriter(stringWriter));
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(printWriter); // Настройка для правильного возврата PrintWriter
 
 
-        supportServlet.doPost(request, response);
+        supportServlet.addSupportPhrase(request, response);
 
 
-        String expectedResponse = "Ваша фраза добавлена. ID: 1";
+        String expectedResponse = "{\"id\":1,\"phrase\":\"Новая фраза\"}";
         assertEquals(expectedResponse, stringWriter.toString().trim());
     }
 
+
+
+
     @Test
     void testDoGet() throws Exception {
-        //Я вообще не понял, как обрабатывать рандом в тесте
-
         List<SupportPhrase> supportPhrases = new ArrayList<>();
-        // supportPhrases.add(new SupportPhrase(1, "Фраза 1"));
 
-
-        when(supportPhraseService.getAllSupportPhrases()).thenReturn(supportPhrases);
-
+        when(supportPhraseServiceImpl.getAllSupportPhrases()).thenReturn(supportPhrases);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
-
-        supportServlet.doGet(request, response);
-
+        supportServlet.getSupportPhrase(request, response);
 
         writer.flush();
         String actualResponse = stringWriter.toString().trim();
 
-
         if (supportPhrases.isEmpty()) {
-            assertEquals("Нет слов", actualResponse);
+            assertEquals("\"Нет слов\"", actualResponse);
+
         } else {
             assertTrue(actualResponse.contains("Фраза 1"));
         }

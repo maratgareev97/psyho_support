@@ -10,6 +10,9 @@ public class SupportPhraseDao {
     private static final Map<Integer, SupportPhrase> supportPhrases = new HashMap<>();
     private static int idCounter = 1;
 
+    public SupportPhraseDao() {
+    }
+
     public SupportPhrase addSupportPhrase(String phrase) {
         SupportPhrase newSupportPhrase = new SupportPhrase(idCounter, phrase);
         supportPhrases.put(idCounter, newSupportPhrase);

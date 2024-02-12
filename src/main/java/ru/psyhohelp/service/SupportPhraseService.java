@@ -1,23 +1,14 @@
 package ru.psyhohelp.service;
 
-import java.util.List;
-
-import ru.psyhohelp.dao.SupportPhraseDao;
+import ru.psyhohelp.configuration.Logged;
 import ru.psyhohelp.model.SupportPhrase;
 
-public class SupportPhraseService {
-    private final SupportPhraseDao supportPhraseDao;
+import java.util.List;
 
-    public SupportPhraseService(SupportPhraseDao supportPhraseDao) {
-        this.supportPhraseDao = supportPhraseDao;
-    }
+public interface SupportPhraseService {
+    @Logged
+    public SupportPhrase addSupportPhrase(String phrase) ;
 
-    public SupportPhrase addSupportPhrase(String phrase) {
-        return supportPhraseDao.addSupportPhrase(phrase);
-    }
-
-    public List<SupportPhrase> getAllSupportPhrases() {
-        return supportPhraseDao.getAllSupportPhrases();
-    }
-
+    @Logged
+    public List<SupportPhrase> getAllSupportPhrases();
 }
