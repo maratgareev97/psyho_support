@@ -4,6 +4,9 @@ public class SupportPhrase {
     private int id;
     private String phrase;
 
+    public SupportPhrase() {
+    }
+
     public SupportPhrase(int id, String phrase) {
         this.id = id;
         this.phrase = phrase;
