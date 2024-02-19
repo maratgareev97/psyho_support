@@ -17,6 +17,9 @@
         <version>3.2.0</version>
         <relativePath/>
     </parent>
+    <modules>
+        <module>inmemory-broker</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -66,6 +69,21 @@
             <version>3.2.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version> <!-- Укажите актуальную версию -->
+        </dependency>
+
+
+
+        <!--            <dependency>-->
+<!--                <groupId>jakarta.annotation</groupId>-->
+<!--                <artifactId>jakarta.annotation-api</artifactId>-->
+<!--                <version>2.1.1</version>-->
+<!--            </dependency>-->
+
 
     </dependencies>
 

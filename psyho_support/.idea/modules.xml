@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/inmemory-broker/inmemory-broker.iml" filepath="$PROJECT_DIR$/inmemory-broker/inmemory-broker.iml" />
       <module fileurl="file://$PROJECT_DIR$/psyho_support.iml" filepath="$PROJECT_DIR$/psyho_support.iml" />
     </modules>
   </component>
