@@ -3,67 +3,77 @@ package ru.psyhohelp.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import ru.psyhohelp.messagebroker.MessageBroker;
 import ru.psyhohelp.model.SupportPhrase;
 import ru.psyhohelp.repository.SupportPhraseRepository;
 import ru.psyhohelp.service.SupportPhraseService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 
-class SupportPhraseControllerImplTest {
 
-    @Mock
+
+
+@WebMvcTest(SupportPhraseControllerImpl.class)
+public class SupportPhraseControllerImplTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     private SupportPhraseService supportPhraseService;
 
-    @Mock
+    @MockBean
     private SupportPhraseRepository supportPhraseRepository;
 
-    @Mock
+    @MockBean
     private MessageBroker messageBroker;
 
-    @InjectMocks
-    private SupportPhraseControllerImpl supportPhraseController;
-
-    private ObjectMapper objectMapper;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
-        objectMapper = new ObjectMapper();
+
     }
 
     @Test
-    void testGetSupportPhrase() throws Exception {
-        // Arrange
-        List<SupportPhrase> supportPhrases = new ArrayList<>();
-        supportPhrases.add(new SupportPhrase(1, "Test Phrase 1"));
-        when(supportPhraseService.getAllSupportPhrases()).thenReturn(supportPhrases);
+    public void testGetSupportPhrase() throws Exception {
+        SupportPhrase phrase = new SupportPhrase(1, "Keep going!");
+        when(supportPhraseService.getAllSupportPhrases()).thenReturn(Arrays.asList(phrase));
 
-        // Act
-        String response = supportPhraseController.getSupportPhrase();
+        mockMvc.perform(get("/help-service/v1/support"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(objectMapper.writeValueAsString(phrase.getPhrase())));
 
-        // Assert
-        assertEquals("\"Test Phrase 1\"", response);
+        verify(supportPhraseService, times(1)).getAllSupportPhrases();
     }
 
     @Test
-    void testAddSupportPhrase() {
-        // Arrange
-        SupportPhrase newPhrase = new SupportPhrase(1, "New Test Phrase");
-        String requestBody = "{\"phrase\": \"New Test Phrase\"}";
+    public void testAddSupportPhrase() throws Exception {
+        String newPhraseText = "You can do it!";
+        doNothing().when(supportPhraseRepository).addSupportPhrase(any(SupportPhrase.class));
+        doNothing().when(messageBroker).sendMessage(eq("newPhraseTopic"), eq(newPhraseText));
 
-        // Act
-        supportPhraseController.addSupportPhrase("New Test Phrase");
+        mockMvc.perform(post("/help-service/v1/support")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(newPhraseText))
+                .andExpect(status().isOk());
 
-        // Assert
-        verify(supportPhraseRepository, times(1)).addSupportPhrase(newPhrase);
-        verify(messageBroker, times(1)).sendMessage("newPhraseTopic", newPhrase.getPhrase());
+        verify(supportPhraseRepository, times(1)).addSupportPhrase(any(SupportPhrase.class));
+        verify(messageBroker, times(1)).sendMessage(eq("newPhraseTopic"), eq(newPhraseText));
     }
 }

@@ -20,4 +20,9 @@ public class InMemoryMessageBroker implements MessageBroker {
             }
         }
     }
+
+    @Override
+    public void subscribe(String topic, MessageListener listener) {
+        subscribers.computeIfAbsent(topic, k -> new HashSet<>()).add(listener);
+    }
 }
