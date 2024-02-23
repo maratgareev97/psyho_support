@@ -6,33 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="b2302f71-88f4-4cbf-87fb-2197e823d613" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/psyho_support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/psyho_support.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/psyho_support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/psyho_support.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/messagebroker/InMemoryMessageBroker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/messagebroker/MessageBroker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/messagebroker/MessageListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/messagebroker/SupportPhraseSubscriber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/ApplicationWithSpring.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/controller/SupportPhraseControllerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/messagebroker/InMemoryMessageBroker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/messagebroker/MessageBroker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/messagebroker/MessageListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/messagebroker/SupportPhraseSubscriber.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/model/SupportPhrase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/repository/SupportPhraseRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/repository/SupportPhraseRepositoryImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/service/SupportPhraseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/service/SupportPhraseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/ApplicationContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/GreetingService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/GreetingServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/Logged.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/LoggedInvocationHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/psyhohelp/test/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/psyhohelp/ApplicationWithSpring.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/ru/psyhohelp/ApplicationWithSpring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/ApplicationContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/GreetingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/GreetingServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/Logged.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/LoggedInvocationHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/psyhohelp/test/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +36,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="002b97f0-aaad-4ff3-a100-d5033154f007" />
+        <option name="url" value="https://github.com/maratgareev97/psyho_support.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -85,7 +85,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.62542564",
     "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
-    "spring.configuration.checksum": "a8aa5bd9348344d883fdfafcea9636ce",
+    "spring.configuration.checksum": "60c6bc25041530d79641b7ac934690a0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -149,6 +149,9 @@
       <updated>1708371307112</updated>
       <workItem from="1708371308252" duration="1764000" />
       <workItem from="1708378610440" duration="5751000" />
+      <workItem from="1708507991313" duration="1577000" />
+      <workItem from="1708594460812" duration="2365000" />
+      <workItem from="1708599490662" duration="1700000" />
     </task>
     <servers />
   </component>
