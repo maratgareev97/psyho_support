@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.psyhohelp.messagebroker.MessageBroker;
 import ru.psyhohelp.model.SupportPhrase;
 import ru.psyhohelp.repository.SupportPhraseRepository;
 import ru.psyhohelp.service.SupportPhraseService;
@@ -17,23 +16,17 @@ import java.util.List;
 @RestController
 public class SupportPhraseControllerImpl {
 
-    private final SupportPhraseService supportPhraseService;
-    private final SupportPhraseRepository supportPhraseRepository; // Добавили поле репозитория
+    private final SupportPhraseRepository supportPhraseRepository;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final MessageBroker messageBroker;
 
     @Autowired
-    public SupportPhraseControllerImpl(SupportPhraseService supportPhraseService,
-                                       SupportPhraseRepository supportPhraseRepository,
-                                       MessageBroker messageBroker) {
-        this.supportPhraseService = supportPhraseService;
-        this.supportPhraseRepository = supportPhraseRepository; // Инициализировали поле репозитория
-        this.messageBroker = messageBroker;
+    public SupportPhraseControllerImpl(SupportPhraseRepository supportPhraseRepository) {
+        this.supportPhraseRepository = supportPhraseRepository;
     }
 
     @GetMapping("/help-service/v1/support")
     public String getSupportPhrase() throws IOException {
-        List<SupportPhrase> supportPhrases = supportPhraseService.getAllSupportPhrases();
+        List<SupportPhrase> supportPhrases = supportPhraseRepository.getAllSupportPhrases();
         if (supportPhrases.isEmpty()) {
             return "\"Нет слов\"";
         } else {
@@ -48,7 +41,5 @@ public class SupportPhraseControllerImpl {
         newPhrase.setPhrase(newPhraseText);
 
         supportPhraseRepository.addSupportPhrase(newPhrase);
-
-        messageBroker.sendMessage("newPhraseTopic", newPhraseText);
     }
 }
