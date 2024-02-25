@@ -11,35 +11,58 @@ import ru.psyhohelp.repository.SupportPhraseRepository;
 import ru.psyhohelp.service.SupportPhraseService;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.UUID;
 
 @RestController
 public class SupportPhraseControllerImpl {
 
     private final SupportPhraseRepository supportPhraseRepository;
+
+    private final SupportPhraseService supportPhraseService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    public SupportPhraseControllerImpl(SupportPhraseRepository supportPhraseRepository) {
+    public SupportPhraseControllerImpl(SupportPhraseRepository supportPhraseRepository, SupportPhraseService supportPhraseService) {
         this.supportPhraseRepository = supportPhraseRepository;
+        this.supportPhraseService = supportPhraseService;
     }
 
     @GetMapping("/help-service/v1/support")
     public String getSupportPhrase() throws IOException {
-        List<SupportPhrase> supportPhrases = supportPhraseRepository.getAllSupportPhrases();
+        HashSet<SupportPhrase> supportPhrases = supportPhraseRepository.getAllSupportPhrases();
         if (supportPhrases.isEmpty()) {
             return "\"Нет слов\"";
         } else {
             int randomIndex = (int) (Math.random() * supportPhrases.size());
-            return objectMapper.writeValueAsString(supportPhrases.get(randomIndex).getPhrase());
+            Iterator<SupportPhrase> iterator = supportPhrases.iterator();
+            SupportPhrase randomPhrase = null;
+            for (int i = 0; i <= randomIndex; i++) {
+                randomPhrase = iterator.next();
+            }
+
+            for (SupportPhrase s : supportPhraseService.getAllSupportPhrases()) {
+                System.out.println(s.getId() + "   " + s.getPhrase());
+            }
+            return objectMapper.writeValueAsString(randomPhrase.getPhrase());
         }
     }
 
     @PostMapping("/help-service/v1/support")
     public void addSupportPhrase(@RequestBody String newPhraseText) {
         SupportPhrase newPhrase = new SupportPhrase();
+        newPhrase.setId(UUID.randomUUID().toString());
         newPhrase.setPhrase(newPhraseText);
 
-        supportPhraseRepository.addSupportPhrase(newPhrase);
+        Boolean flag = false;
+
+        for (SupportPhrase s : supportPhraseService.getAllSupportPhrases()) {
+            if (s.getPhrase().contains(newPhraseText)) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) supportPhraseService.sendSupportPhrase(newPhrase);
     }
 }

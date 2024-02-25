@@ -1,18 +1,18 @@
 package ru.psyhohelp.model;
 
 public class SupportPhrase {
-    private int id;
+    private String id;
     private String phrase;
 
     public SupportPhrase() {
     }
 
-    public SupportPhrase(int id, String phrase) {
+    public SupportPhrase(String id, String phrase) {
         this.id = id;
         this.phrase = phrase;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -20,7 +20,7 @@ public class SupportPhrase {
         return phrase;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -3,13 +3,13 @@ package ru.psyhohelp.repository;
 import org.springframework.stereotype.Repository;
 import ru.psyhohelp.model.SupportPhrase;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+
 
 @Repository
 public class SupportPhraseRepositoryImpl implements SupportPhraseRepository {
 
-    private List<SupportPhrase> phrases = new ArrayList<>();
+    private HashSet<SupportPhrase> phrases = new HashSet<>();
 
     @Override
     public void addSupportPhrase(SupportPhrase phrase) {
@@ -17,7 +17,7 @@ public class SupportPhraseRepositoryImpl implements SupportPhraseRepository {
     }
 
     @Override
-    public List<SupportPhrase> getAllSupportPhrases() {
+    public HashSet<SupportPhrase> getAllSupportPhrases() {
         return phrases;
     }
 }
