@@ -2,10 +2,12 @@ package ru.psyhohelp.service;
 
 import ru.psyhohelp.model.SupportPhrase;
 
-import java.util.List;
+import java.util.HashSet;
 
 
 public interface SupportPhraseService {
 
-    List<SupportPhrase> getAllSupportPhrases();
+    HashSet<SupportPhrase> getAllSupportPhrases();
+
+    public void sendSupportPhrase(SupportPhrase supportPhrase);
 }
